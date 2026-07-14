@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
+    <title>30 Days Workout challenge</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        
+        body { 
+            background: radial-gradient(circle at top, #1a1a24 0%, #0d0d11 100%); 
+            color: #fff; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            padding: 3vh 4vw;
+            overflow: hidden;
+        }
+
+        header { text-align: center; margin-bottom: 2vh; }
+        h1 { font-size: clamp(1.5rem, 4vh, 2.5rem); font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #ff4e50, #f9d423); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+ 
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            grid-template-rows: repeat(6, 1fr); 
+            gap: 15px; 
+            flex-grow: 1; 
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+
+        .day { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: clamp(1.2rem, 3vh, 2rem); 
+            font-weight: 600; 
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+
+        .day.done { 
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15), rgba(0, 184, 212, 0.15));
+            border-color: #00e676; 
+            color: #00e676; 
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.15);
+            text-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+        }
+
+  
+        @media (max-aspect-ratio: 1/1) {
+            .grid { 
+                grid-template-columns: repeat(4, 1fr); 
+                grid-template-rows: repeat(8, 1fr); 
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>30 DAYS CHALLENGE</h1>
+    </header>
+
+    <div class="grid" id="grid"></div>
+
+    <script>
+  
+        const completedDays = [ 1, 2, 3, 4, 5, 6]; 
+
+
+        const grid = document.getElementById('grid');
+
+        for (let i = 1; i <= 30; i++) {
+            const box = document.createElement('div');
+            const isDone = completedDays.includes(i);
+            
+            box.className = `day ${isDone ? 'done' : ''}`;
+            box.textContent = isDone ? '✓' : i;
+            
+            grid.appendChild(box);
+        }
+    </script>
+</body>
+</html>
